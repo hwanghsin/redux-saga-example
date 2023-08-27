@@ -3,11 +3,13 @@ import createMiddleware from "redux-saga";
 import { all } from "redux-saga/effects";
 // reducers
 import Login from "./login/reducer";
+import Switch from "./switch/reducer";
 // sagas
 import { watchLogin } from "./login/saga";
 
 const reducers = combineReducers({
   Login,
+  Switch,
 });
 
 // Saga執行的時候都使用generator函式

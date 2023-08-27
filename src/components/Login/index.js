@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changePassword,
   changeUsername,
   login,
 } from "../../redux/login/actions";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { usr, pwd } = useSelector((state) => state.Login.form);
 
@@ -17,6 +19,11 @@ const Login = () => {
     e.preventDefault();
     dispatch(login({ usr, pwd }));
   };
+
+  useEffect(() => {
+    const storage = localStorage.getItem("login");
+    if (storage) return navigate("/", { replace: true });
+  }, []);
 
   return (
     <div className="bg">

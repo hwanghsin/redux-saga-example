@@ -16,7 +16,9 @@ function* loginApi({ payload: { usr, pwd } }) {
     const json = yield res.json();
     if (json.token) {
       // put在saga裡跟react hook的dispatch一樣
+      localStorage.setItem("login", JSON.stringify(json));
       yield put(loginSuccess());
+      return (window.location = "/");
     }
   } catch (error) {
     alert(error.message);
