@@ -7,6 +7,7 @@ import Switch from "./switch/reducer";
 // sagas
 import { watchLogin } from "./login/saga";
 
+// reducers
 const reducers = combineReducers({
   Login,
   Switch,
@@ -22,7 +23,8 @@ const sagaMiddleware = createMiddleware();
 const middlewares = [sagaMiddleware];
 
 export function configureStore(initialState) {
-  // createStore已停用
+  // createStore已停用，官方還是有放在範例裡面。
+  // const store = createStore(reducers);
   const store = createStore(
     reducers,
     initialState,

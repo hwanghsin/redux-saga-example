@@ -14,7 +14,7 @@
     border-radius: 15px;
     background: #ddd;
   }
-  .switch-container > input[checked=true] ~ .slider {
+  .switch-container > .show ~ .slider {
     background: #13BF98;
   }
   .switch-container > .button {
@@ -29,6 +29,6 @@
     z-index: 1;
     transition: left .3s ease;
   }
-  .switch-container > input[checked=true] ~ .button {
+  .switch-container > .show ~ .button {
     left: 30px;
   }
