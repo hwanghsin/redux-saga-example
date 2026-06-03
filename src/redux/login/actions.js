@@ -2,6 +2,7 @@ import {
   CHANGE_PASSWORD,
   CHANGE_USERNAME,
   LOGIN,
+  LOGIN_FAILURE,
   LOGIN_SUCCESS,
 } from "../constants";
 
@@ -11,6 +12,11 @@ export const login = ({ usr, pwd }) => ({
 });
 
 export const loginSuccess = () => ({ type: LOGIN_SUCCESS });
+
+export const loginFailure = (error) => ({
+  type: LOGIN_FAILURE,
+  payload: { error },
+});
 
 export const changeUsername = (usr) => ({
   type: CHANGE_USERNAME,

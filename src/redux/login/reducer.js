@@ -1,5 +1,6 @@
 import {
   LOGIN,
+  LOGIN_FAILURE,
   LOGIN_SUCCESS,
   API_FINISHED,
   CHANGE_USERNAME,
@@ -8,9 +9,11 @@ import {
 
 const initialState = {
   loading: false,
+  error: null,
+  isLoggedIn: false,
   form: {
-    usr: "kminchelle",
-    pwd: "0lelplR",
+    usr: "",
+    pwd: "",
   },
 };
 
@@ -19,32 +22,38 @@ const Login = (state = initialState, action) => {
     case CHANGE_USERNAME:
       return {
         ...state,
-        form: {
-          ...state.form,
-          usr: action.payload.usr,
-        },
+        form: { ...state.form, usr: action.payload.usr },
       };
     case CHANGE_PASSWORD:
       return {
         ...state,
-        form: {
-          ...state.form,
-          pwd: action.payload.pwd,
-        },
+        form: { ...state.form, pwd: action.payload.pwd },
       };
     case LOGIN:
       return {
         ...state,
         loading: true,
+        error: null,
       };
     case LOGIN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        isLoggedIn: true,
+        form: { usr: "", pwd: "" },
+      };
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
     case API_FINISHED:
       return {
         ...state,
-        form: {
-          usr: "",
-          pwd: "",
-        },
+        loading: false,
+        form: { usr: "", pwd: "" },
       };
     default:
       return state;
